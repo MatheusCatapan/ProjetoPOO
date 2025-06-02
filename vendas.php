@@ -27,7 +27,6 @@
     }
 
         public function total($comprador) {
-            $comprador = $this->comprador;
             $soma = 0;
             foreach ($this->produtos as $produto) {
                 $soma += $produto->preco * $produto->quantidade;
@@ -37,17 +36,15 @@
         }
     }
 
-    $produdos = [
+    $produtos = [
         new Produto("Ração para cachorro", 50.00, 2),
         new Produto("Areia para gato", 20.00, 1),
         new Produto("Shampoo para patos", 150.00, 1)
     ];
 
     $venda = new Venda();
-    foreach ($produdos as $produto) {
-        $venda->adicionarProduto($produto);
-    }   
-    $comprador = "Matheus";
+    $venda->adicionarProduto($produtos[1]);   
+    $comprador = "Matheus";    
     $total = $venda->total($comprador);
-    echo "Total da venda: R$ " . $total . "\n";
+    echo "Total da venda: R$" . $total . " Comprador: $comprador" . "\n";
     $venda->listarProdutos();
