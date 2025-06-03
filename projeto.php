@@ -87,10 +87,10 @@ function cadastrarUsuario($usuario, $senha) {
     return true;
 }
 
-function vendaRealizada($valor, $nomedoItem) {
+function vendaRealizada($valor, $nomedoItem, $comprador) {
     file_put_contents(
         'log.txt',
-        date('Y-m-d H:i:s') . " - Venda: $nomedoItem | Valor: R$ $valor" . PHP_EOL,
+        date('Y-m-d H:i:s') . " - Venda: $nomedoItem | Valor: R$ $valor | Comprador: $comprador" . PHP_EOL,
         FILE_APPEND
     );
 }
@@ -116,9 +116,9 @@ function menu() {
 }
 
 $produtos = [
-    new Produto("Ração para cachorro R$50,00" . "\n", 50.00, 2),
-    new Produto("Areia para gato R$20,00" . "\n", 20.00, 1),
-    new Produto("Shampoo para patos R$150,00" . "\n", 150.00, 1 . "\n")
+    new Produto("Ração para cachorro R$50,00", 50.00, 2 . "\n"), 
+    new Produto("Areia para gato R$20,00", 20.00, 1 . "\n"),
+    new Produto("Shampoo para patos R$150,00", 150.00, 1  . "\n"),
 ];
 
 $venda = new Venda();
@@ -154,7 +154,7 @@ do {
                     switch ($menu) {
                             case 1:
                                 limparTela();
-                                echo $venda->listarProdutos();
+                                $venda->listarProdutos();
                                 pausa();
                                 break;
                             case 2:
@@ -163,9 +163,10 @@ do {
                                 $item = trim(fgets(STDIN));
                                 echo "Digite o valor da venda: ";
                                 $valor = trim(fgets(STDIN));
+                                echo "Digite o nome do comprador: ";
+                                $comprador = trim(fgets(STDIN));
                                 if (is_numeric($valor)) {
-                                    vendaRealizada($valor, $item);
-                                    logar("Venda realizada: $item - R$ $valor");
+                                    vendaRealizada($valor, $item, $comprador);
                                     echo "Venda registrada com sucesso!\n";
                                 } else {
                                     echo "Valor inválido! Tente novamente.\n";

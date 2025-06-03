@@ -42,9 +42,9 @@
         new Produto("Shampoo para patos", 150.00, 1)
     ];
 
-    $venda = new Venda();
-    $venda->adicionarProduto($produtos[1]);   
-    $comprador = "Matheus";    
-    $total = $venda->total($comprador);
-    echo "Total da venda: R$" . $total . " Comprador: $comprador" . "\n";
-    $venda->listarProdutos();
+    // $venda = new Venda();
+    // $venda->adicionarProduto($produtos[1]);   
+    // $comprador = "Matheus";    
+    // $total = $venda->total($comprador);
+    // echo "Total da venda: R$" . $total . " Comprador: $comprador" . "\n";
+    // $venda->listarProdutos();
